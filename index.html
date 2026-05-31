@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="description" content="Senior QA Automation Engineer | 6.5+ Years Experience | Playwright Python AWS Snowflake">
+  <meta name="keywords" content="QA Automation, Playwright, Selenium, Python, AWS, Snowflake, ETL Testing">
+  <meta name="author" content="Rushikesh Kharat">
+  <title>Rushikesh Kharat · Senior QA Automation Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --primary: #2563eb;
+      --primary-glow: rgba(37,99,235,0.25);
+      --accent: #7c3aed;
+      --border: #e2e8f0;
+      --card-shadow: 0 12px 32px -10px rgba(0,0,0,0.08);
+      --nav-bg: rgba(255,255,255,0.85);
+      --tag-bg: #eef2ff;
+      --tag-text: #1e40af;
+      --gradient-hero: linear-gradient(135deg, #eff6ff, #f5f3ff);
+      --success: #10b981;
+      --radius: 24px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --primary: #3b82f6;
+      --primary-glow: rgba(59,130,246,0.4);
+      --accent: #a78bfa;
+      --border: #334155;
+      --card-shadow: 0 12px 32px -8px rgba(0,0,0,0.5);
+      --nav-bg: rgba(15,23,42,0.9);
+      --tag-bg: #1e293b;
+      --tag-text: #93c5fd;
+      --gradient-hero: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.4s, color 0.4s;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Particles Background */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.07;
+      animation: floatUp 14s infinite ease-in;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(105vh) scale(0); opacity: 0; }
+      15% { opacity: 0.12; }
+      85% { opacity: 0.04; }
+      100% { transform: translateY(-15vh) scale(1.3); opacity: 0; }
+    }
+
+    /* Bug Hunting Animation */
+    .bug-hunter-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .bug-animation {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      animation: bugMove 8s infinite ease-in-out;
+    }
+
+    .bug-body {
+      font-size: 2.5rem;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
+      animation: bugWiggle 0.6s infinite alternate;
+    }
+
+    .bug-net {
+      position: absolute;
+      top: -18px;
+      left: 28px;
+      font-size: 2rem;
+      opacity: 0;
+      animation: netSwing 3s infinite;
+    }
+
+    @keyframes bugMove {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(-25px, -35px) rotate(-6deg); }
+      50% { transform: translate(-50px, 8px) rotate(3deg); }
+      75% { transform: translate(-18px, -45px) rotate(-2deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    @keyframes bugWiggle {
+      0% { transform: rotate(-4deg); }
+      100% { transform: rotate(4deg); }
+    }
+
+    @keyframes netSwing {
+      0% { opacity: 0; transform: rotate(-20deg); }
+      40% { opacity: 0.9; transform: rotate(10deg); }
+      70% { opacity: 0.2; }
+      100% { opacity: 0; transform: rotate(-20deg); }
+    }
+
+    .bug-text {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      background: var(--surface);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border);
+      z-index: 201;
+      animation: fadeText 3s infinite;
+      color: var(--text);
+    }
+
+    @keyframes fadeText {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      margin: 12px 20px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 50px;
+      padding: 12px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .date-time {
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      background: var(--surface);
+      padding: 7px 14px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .theme-toggle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text);
+      transition: 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      padding: 9px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.25s;
+      box-shadow: 0 6px 18px var(--primary-glow);
+      border: none;
+      cursor: pointer;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px var(--primary-glow);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 60px 0 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 6px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 750;
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin: 14px 0;
+      max-width: 500px;
+    }
+
+    .counter-box {
+      display: flex;
+      gap: 18px;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+
+    .counter-item {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 14px 20px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .counter-item h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .counter-item p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .hero-visual {
+      background: var(--gradient-hero);
+      border-radius: 32px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+    }
+
+    .language-bar {
+      width: 100%;
+      margin: 16px 0;
+    }
+
+    .lang-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+    }
+
+    .progress {
+      width: 65%;
+      height: 7px;
+      background: var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 10px;
+      transition: width 2s ease;
+    }
+
+    /* Sections */
+    section {
+      padding: 56px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      font-size: 1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+      transition: all 0.35s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 36px -14px var(--primary-glow);
+    }
+
+    .card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+
+    .tech-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .tech-tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 6px 15px;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.84rem;
+      transition: 0.2s;
+    }
+
+    .tech-tag:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Experience Timeline */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .timeline-item {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 22px;
+      border-left: 4px solid var(--primary);
+      box-shadow: var(--card-shadow);
+    }
+
+    .timeline-item h4 {
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    /* Resources */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .resource-card {
+      background: var(--surface);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: 0.3s;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .resource-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 10px 22px var(--primary-glow);
+    }
+
+    .resource-card i {
+      font-size: 2.2rem;
+      color: var(--primary);
+    }
+
+    /* Contact */
+    .contact-card {
+      background: var(--surface);
+      border-radius: 28px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+    }
+
+    .contact-info i {
+      color: var(--primary);
+      width: 22px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 13px 16px;
+      margin-bottom: 14px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.93rem;
+      transition: 0.2s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-glow);
+    }
+
+    footer {
+      text-align: center;
+      padding: 26px;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-grid,
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+      .navbar {
+        border-radius: 28px;
+        padding: 10px 18px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .bug-hunter-container {
+        bottom: 10px;
+        right: 6px;
+      }
+      .bug-body {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+
+  <!-- Bug Hunting Animation -->
+  <div class="bug-hunter-container">
+    <div class="bug-animation">
+      <span class="bug-body">🐛</span>
+      <span class="bug-net">🪿</span>
+    </div>
+  </div>
+  <div class="bug-text" id="bugMessage">🔍 Hunting bugs...</div>
+
+  <nav class="navbar">
+    <div class="logo"><i class="fas fa-shield-haltered"></i> Rushikesh Kharat</div>
+    <div class="nav-actions">
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#resources">Resources</a>
+      </div>
+      <div class="date-time" id="liveDateTime">
+        <i class="far fa-calendar-alt"></i> <span id="dateDisplay"></span> · <span id="timeDisplay"></span>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch theme">
+        <i class="fas fa-moon"></i>
+      </button>
+      <a href="#contact" class="btn-primary"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" id="about">
+      <div class="hero-grid">
+        <div>
+          <span class="hero-badge"><i class="fas fa-briefcase"></i> 6.5+ Years in Quality Engineering</span>
+          <h1>Senior <span class="gradient-text">QA Automation</span> Engineer</h1>
+          <p class="hero-subtitle">
+            Results-driven professional specializing in automation testing, ETL validation, and quality engineering across Pharmaceutical, Healthcare, Telecom, and Payment Card domains.
+          </p>
+          <div class="counter-box">
+            <div class="counter-item">
+              <h3 id="testCounter">2000+</h3>
+              <p>Test Cases Automated</p>
+            </div>
+            <div class="counter-item">
+              <h3>75%</h3>
+              <p>Regression Reduced</p>
+            </div>
+            <div class="counter-item">
+              <h3 id="expCounter">6.5+</h3>
+              <p>Years Experience</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <i class="fas fa-code" style="font-size:2.5rem; color:var(--primary);"></i>
+          <h4 style="margin:10px 0;">Core Competencies</h4>
+          <div class="language-bar">
+            <div class="lang-item"><span>Python</span><div class="progress"><div class="progress-fill" style="width:92%"></div></div></div>
+            <div class="lang-item"><span>SQL / Database</span><div class="progress"><div class="progress-fill" style="width:88%"></div></div></div>
+            <div class="lang-item"><span>Automation Frameworks</span><div class="progress"><div class="progress-fill" style="width:90%"></div></div></div>
+            <div class="lang-item"><span>Cloud (AWS)</span><div class="progress"><div class="progress-fill" style="width:78%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Summary -->
+    <section id="experience">
+      <h2 class="section-title">💼 Professional Summary</h2>
+      <p class="section-subtitle">6.5+ years of expertise in software testing and quality assurance</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4><i class="fas fa-check-circle"></i> Automation Testing</h4>
+          <p>Designed scalable frameworks using Playwright, Selenium, Python, PyTest, BDD. Automated 2000+ UI, API, ETL, and Database test cases.</p>
+        </div>
+        <div class="timeline-item">
+          <h4><i class="fas fa-check-circle"></i> API & ETL Testing</h4>
+          <p>Extensive experience in API Automation, Data Warehouse Testing, Data Migration, and Source-to-Target Validation across Snowflake, PostgreSQL, Oracle.</p>
+        </div>
+        <div class="timeline-item">
+          <h4><i class="fas fa-check-circle"></i> Quality Leadership</h4>
+          <p>Led Test Planning, Strategy, Release Planning, and Risk Assessment. Mentored QA teams and implemented continuous testing in CI/CD pipelines.</p>
+        </div>
+        <div class="timeline-item">
+          <h4><i class="fas fa-check-circle"></i> AI-Assisted Testing</h4>
+          <p>Implemented AI solutions using GitHub Copilot Enterprise, Playwright MCP, and Agentic AI concepts for smarter test automation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Achievements -->
+    <section>
+      <h2 class="section-title">🏆 Key Achievements</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <i class="fas fa-robot"></i>
+          <h3>Framework Development</h3>
+          <p>Built enterprise automation frameworks from scratch using modern technologies, reducing manual effort by 75%.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-database"></i>
+          <h3>Data Validation</h3>
+          <p>Validated pharmaceutical pricing, healthcare, telecom billing platforms with complete data integrity checks.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-cloud"></i>
+          <h3>Cloud Integration</h3>
+          <p>Integrated automated testing into AWS CI/CD workflows using CodePipeline, GitHub Actions, and Jenkins.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Security Testing</h3>
+          <p>Applied OWASP principles and security validation techniques across enterprise applications.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section id="skills">
+      <h2 class="section-title">⚡ Technical Skills</h2>
+      <p class="section-subtitle">Technologies and tools I work with daily</p>
+      <div class="tech-cloud">
+        <span class="tech-tag">Playwright</span>
+        <span class="tech-tag">Selenium WebDriver</span>
+        <span class="tech-tag">PyTest</span>
+        <span class="tech-tag">Cypress</span>
+        <span class="tech-tag">Robot Framework</span>
+        <span class="tech-tag">BDD/Gherkin</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">SQL</span>
+        <span class="tech-tag">Postman</span>
+        <span class="tech-tag">REST Assured</span>
+        <span class="tech-tag">Snowflake</span>
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">Oracle</span>
+        <span class="tech-tag">AWS</span>
+        <span class="tech-tag">GitHub Actions</span>
+        <span class="tech-tag">Jenkins</span>
+        <span class="tech-tag">Jira/Xray</span>
+        <span class="tech-tag">JMeter</span>
+        <span class="tech-tag">Pandas</span>
+        <span class="tech-tag">Git</span>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources">
+      <h2 class="section-title">📂 Resources</h2>
+      <p class="section-subtitle">Download my resume, test artifacts, and explore my work</p>
+      <div class="resources-grid">
+        <a class="resource-card" id="downloadResume">
+          <i class="fas fa-file-pdf"></i>
+          <span><strong>Resume</strong></span>
+          <small>Download PDF</small>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="resource-card">
+          <i class="fab fa-github"></i>
+          <span><strong>GitHub</strong></span>
+          <small>View Repositories</small>
+        </a>
+        <a class="resource-card" id="downloadTestCases">
+          <i class="fas fa-file-excel"></i>
+          <span><strong>Test Cases</strong></span>
+          <small>Sample Excel</small>
+        </a>
+        <a class="resource-card" id="downloadEvidence">
+          <i class="fas fa-images"></i>
+          <span><strong>Test Evidence</strong></span>
+          <small>Reports & Screenshots</small>
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">📬 Get In Touch</h2>
+      <p class="section-subtitle">Have an opportunity or question? Feel free to reach out.</p>
+      <div class="contact-card">
+        <div class="contact-info">
+          <h3 style="margin-bottom:16px;">Contact Information</h3>
+          <p style="margin-bottom:12px;"><i class="fas fa-envelope"></i> <strong>Email:</strong> xxxxxxxxxxx@email.com</p>
+          <p style="margin-bottom:12px;"><i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> linkedin.com/in/xxxxxxxxxx</p>
+          <p style="margin-bottom:12px;"><i class="fab fa-github"></i> <strong>GitHub:</strong> github.com/xxxxxxxxxxxxxxxxxxxx</p>
+          <p style="margin-bottom:12px;"><i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> India</p>
+        </div>
+        <div>
+          <form class="contact-form" id="contactForm">
+            <input type="text" name="name" id="name" placeholder="Your Name *" required>
+            <input type="email" name="email" id="email" placeholder="Email Address *" required>
+            <input type="text" name="subject" id="subject" placeholder="Subject">
+            <textarea name="message" id="message" rows="4" placeholder="Your message..."></textarea>
+            <button type="submit" class="btn-primary" style="width:100%;" id="submitBtn">
+              <span id="btnText">Send Message <i class="fas fa-paper-plane"></i></span>
+              <span id="btnLoading" style="display:none;"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+            </button>
+            <p id="formFeedback" style="margin-top:10px; font-weight:500; text-align:center;"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Rushikesh Kharat · Senior QA Automation Engineer</p>
+    <p style="margin-top:4px;">Playwright · Python · AWS · Snowflake · CI/CD</p>
+  </footer>
+
+  <script>
+    // ✅ Google Sheets Web App URL - Already configured
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwaEyonelHIEmg0WERIVS8XBERtJ-Sf7tRrdSl_oVY9N6BWkTd3XEfTpYt--b-p53pB/exec';
+
+    (function() {
+      // Particles
+      const particlesContainer = document.getElementById('particles');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 55 + 18;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = 10 + Math.random() * 18 + 's';
+        particlesContainer.appendChild(particle);
+      }
+
+      // Date & Time
+      function updateDateTime() {
+        const now = new Date();
+        const opts = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+        document.getElementById('dateDisplay').textContent = now.toLocaleDateString('en-US', opts);
+        document.getElementById('timeDisplay').textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      }
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+
+      // Counter animation
+      function animateCounter(elId, target, suffix = '+') {
+        const el = document.getElementById(elId);
+        if (!el) return;
+        let current = 0;
+        const step = Math.ceil(target / 80);
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            el.textContent = target + suffix;
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current) + suffix;
+          }
+        }, 30);
+      }
+      window.addEventListener('load', () => {
+        animateCounter('testCounter', 2000);
+      });
+
+      // Theme toggle
+      const themeToggle = document.getElementById('themeToggle');
+      const html = document.documentElement;
+      const icon = themeToggle.querySelector('i');
+      function setTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        localStorage.setItem('portfolioTheme', theme);
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      }
+      const saved = localStorage.getItem('portfolioTheme') || 'light';
+      setTheme(saved);
+      themeToggle.addEventListener('click', () => {
+        const current = html.getAttribute('data-theme');
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+
+      // Bug messages
+      const bugMessages = ['🐞 Bug spotted!', '🪲 Squashing...', '🔍 Testing...', '✅ All green!', '🕵️ QA mode'];
+      const bugMsgEl = document.getElementById('bugMessage');
+      let msgIndex = 0;
+      setInterval(() => {
+        bugMsgEl.textContent = bugMessages[msgIndex % bugMessages.length];
+        msgIndex++;
+      }, 2800);
+
+      // Download simulations
+      document.getElementById('downloadResume').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('📄 Resume download (demo). Replace with actual PDF link.');
+      });
+      document.getElementById('downloadTestCases').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('📊 Test Cases Excel (demo). Link to your file.');
+      });
+      document.getElementById('downloadEvidence').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('🖼️ Test Evidence (demo). Add real links.');
+      });
+
+      // Contact form - Saves to Google Sheets
+      document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const form = this;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const fb = document.getElementById('formFeedback');
+        const btnText = document.getElementById('btnText');
+        const btnLoading = document.getElementById('btnLoading');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        if (!name || !email) {
+          fb.textContent = '❌ Please fill name and email.';
+          fb.style.color = '#f87171';
+          fb.style.display = 'block';
+          return;
+        }
+        
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+        submitBtn.disabled = true;
+        fb.style.display = 'none';
+        
+        try {
+          const formData = new FormData();
+          formData.append('timestamp', new Date().toISOString());
+          formData.append('name', name);
+          formData.append('email', email);
+          formData.append('subject', subject || 'No subject');
+          formData.append('message', message || 'No message');
+          
+          const response = await fetch(GOOGLE_SHEET_URL, {
+            method: 'POST',
+            body: formData
+          });
+          
+          const result = await response.json();
+          
+          if (result.result === 'success' || response.ok) {
+            fb.textContent = `✅ Thanks ${name}! Your message has been received.`;
+            fb.style.color = '#4ade80';
+            fb.style.display = 'block';
+            form.reset();
+          } else {
+            throw new Error(result.message || 'Submission failed');
+          }
+        } catch (error) {
+          console.error('Form error:', error);
+          fb.textContent = '❌ Unable to send. Please email me directly.';
+          fb.style.color = '#f87171';
+          fb.style.display = 'block';
+        } finally {
+          btnText.style.display = 'inline';
+          btnLoading.style.display = 'none';
+          submitBtn.disabled = false;
+          setTimeout(() => { fb.style.display = 'none'; }, 8000);
+        }
+      });
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
