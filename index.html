@@ -959,8 +959,7 @@
     })();
   </script>
   <!-- ============================================ -->
-<!-- RUSHI'S ASSISTANCE - 100% FREE QA CHATBOT   -->
-<!-- No API Key | No Payments | Unlimited Chats  -->
+<!-- RUSHI'S ASSISTANCE - FREE QA CHATBOT (FIXED) -->
 <!-- ============================================ -->
 
 <style>
@@ -979,7 +978,7 @@
     background: linear-gradient(135deg, #2563eb, #7c3aed);
     border: none;
     color: white;
-    font-size: 22px;
+    font-size: 24px;
     cursor: pointer;
     box-shadow: 0 8px 30px rgba(37, 99, 235, 0.35);
     transition: all 0.3s ease;
@@ -1014,7 +1013,6 @@
   
   .rushi-chatbot .chat-bubble:hover {
     transform: scale(1.08);
-    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.5);
   }
   
   .rushi-chatbot .chat-window {
@@ -1029,7 +1027,6 @@
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
     border: 1px solid #e2e8f0;
     overflow: hidden;
-    flex-direction: column;
     animation: slideUp 0.3s ease;
   }
   
@@ -1040,15 +1037,14 @@
   
   .rushi-chatbot .chat-window.open {
     display: flex;
+    flex-direction: column;
   }
   
-  /* Dark mode */
   [data-theme="dark"] .rushi-chatbot .chat-window {
     background: #1e293b;
     border-color: #334155;
   }
   
-  /* Header */
   .rushi-chatbot .chat-header {
     background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white;
@@ -1079,26 +1075,23 @@
   .chat-header .bot-title {
     font-weight: 600;
     font-size: 15px;
-    line-height: 1.2;
   }
   
   .chat-header .bot-subtitle {
     font-size: 11px;
     opacity: 0.85;
-    display: flex;
-    align-items: center;
-    gap: 5px;
   }
   
-  .chat-header .online-indicator {
+  .chat-header .online-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
     background: #10b981;
     display: inline-block;
+    margin-right: 4px;
   }
   
-  .chat-header .close-chat {
+  .chat-header .close-btn {
     background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
@@ -1106,25 +1099,20 @@
     height: 32px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.2s;
   }
   
-  .chat-header .close-chat:hover {
+  .chat-header .close-btn:hover {
     background: rgba(255, 255, 255, 0.35);
   }
   
-  /* Messages area */
   .rushi-chatbot .chat-body {
     flex: 1;
     padding: 15px;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     background: #f8fafc;
   }
   
@@ -1147,6 +1135,7 @@
     max-width: 85%;
     font-size: 13px;
     line-height: 1.55;
+    margin-bottom: 10px;
     word-wrap: break-word;
     animation: msgIn 0.3s ease;
   }
@@ -1159,7 +1148,7 @@
   .rushi-chatbot .msg.bot {
     background: white;
     border: 1px solid #e2e8f0;
-    align-self: flex-start;
+    margin-right: auto;
     border-bottom-left-radius: 5px;
     color: #1e293b;
   }
@@ -1173,19 +1162,19 @@
   .rushi-chatbot .msg.user {
     background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white;
-    align-self: flex-end;
+    margin-left: auto;
     border-bottom-right-radius: 5px;
   }
   
   .rushi-chatbot .typing {
     display: none;
-    align-self: flex-start;
     padding: 12px 16px;
     background: white;
     border: 1px solid #e2e8f0;
     border-radius: 16px;
     border-bottom-left-radius: 5px;
-    gap: 5px;
+    margin-right: auto;
+    margin-bottom: 10px;
   }
   
   [data-theme="dark"] .rushi-chatbot .typing {
@@ -1195,6 +1184,7 @@
   
   .rushi-chatbot .typing.show {
     display: flex;
+    gap: 5px;
   }
   
   .rushi-chatbot .typing span {
@@ -1203,6 +1193,7 @@
     border-radius: 50%;
     background: #94a3b8;
     animation: bounce 1.3s infinite;
+    display: inline-block;
   }
   
   .typing span:nth-child(2) { animation-delay: 0.18s; }
@@ -1213,12 +1204,11 @@
     30% { transform: translateY(-8px); }
   }
   
-  /* Quick reply buttons */
   .rushi-chatbot .quick-btns {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    padding: 8px 12px;
+    padding: 10px 12px;
     background: white;
     border-top: 1px solid #f1f5f9;
   }
@@ -1254,7 +1244,6 @@
     border-color: #2563eb;
   }
   
-  /* Input area */
   .rushi-chatbot .chat-footer {
     padding: 12px;
     border-top: 1px solid #e2e8f0;
@@ -1287,7 +1276,6 @@
   
   .rushi-chatbot .chat-footer input:focus {
     border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
   }
   
   .rushi-chatbot .chat-footer .send-btn {
@@ -1297,31 +1285,26 @@
     padding: 10px 15px;
     border-radius: 22px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
     transition: 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: 44px;
   }
   
   .rushi-chatbot .chat-footer .send-btn:hover {
     transform: scale(1.05);
   }
   
-  /* Responsive */
   @media (max-width: 480px) {
     .rushi-chatbot .chat-window {
       width: 92vw;
-      height: 62vh;
+      height: 60vh;
       left: 4vw;
       bottom: 85px;
-      border-radius: 14px;
     }
     .rushi-chatbot .chat-bubble {
       width: 50px;
       height: 50px;
-      font-size: 19px;
-      left: 10px;
+      font-size: 20px;
     }
   }
 </style>
@@ -1334,49 +1317,43 @@
   </button>
 
   <div class="chat-window" id="chatWindow">
-    <!-- Header -->
     <div class="chat-header">
       <div class="header-left">
         <div class="bot-icon">🤖</div>
         <div>
           <div class="bot-title">Rushi's Assistance</div>
           <div class="bot-subtitle">
-            <span class="online-indicator"></span> Online · Ask me anything!
+            <span class="online-dot"></span> Online
           </div>
         </div>
       </div>
-      <button class="close-chat" id="chatCloser">✕</button>
+      <button class="close-btn" id="chatCloser">✕</button>
     </div>
 
-    <!-- Messages -->
     <div class="chat-body" id="chatBody">
       <div class="msg bot">
         👋 <strong>Hello! I'm Rushi's Assistance.</strong><br><br>
-        I can tell you about:<br>
+        Ask me about:<br>
         🔹 QA experience & skills<br>
-        🔹 Automation tools & projects<br>
-        🔹 Technical expertise<br>
-        🔹 How to contact Rahul<br><br>
-        <em>What would you like to know?</em>
+        🔹 Automation tools<br>
+        🔹 Projects & achievements<br>
+        🔹 How to contact Rahul
       </div>
     </div>
 
-    <!-- Typing indicator -->
     <div class="typing" id="typingIndicator">
       <span></span><span></span><span></span>
     </div>
 
-    <!-- Quick replies -->
-    <div class="quick-btns" id="quickBtns">
-      <button class="quick-btn">💼 Experience</button>
-      <button class="quick-btn">🛠️ Skills</button>
-      <button class="quick-btn">📊 Projects</button>
-      <button class="quick-btn">📧 Contact</button>
+    <div class="quick-btns">
+      <button class="quick-btn" data-msg="Experience">💼 Experience</button>
+      <button class="quick-btn" data-msg="Skills">🛠️ Skills</button>
+      <button class="quick-btn" data-msg="Projects">📊 Projects</button>
+      <button class="quick-btn" data-msg="Contact">📧 Contact</button>
     </div>
 
-    <!-- Input -->
     <div class="chat-footer">
-      <input type="text" id="chatInput" placeholder="Type your question here..." />
+      <input type="text" id="chatInput" placeholder="Type your question..." />
       <button class="send-btn" id="chatSend">➤</button>
     </div>
   </div>
@@ -1385,115 +1362,143 @@
 <!-- Chatbot JavaScript -->
 <script>
 (function() {
-  // Knowledge base
-  const knowledge = {
-    greeting: {
-      words: ['hello', 'hi', 'hey', 'hola', 'good morning', 'good evening', 'greetings', 'howdy', 'yo', 'sup'],
-      reply: "👋 <strong>Hello!</strong> Great to see you here! I'm Rushi's Assistance. Ask me about Rahul's <strong>QA experience</strong>, <strong>skills</strong>, or <strong>projects</strong>. How can I help?"
-    },
-    experience: {
-      words: ['experience', 'year', 'work', 'career', 'background', 'history', 'job', 'role', 'position', 'domain', 'industry'],
-      reply: "🎯 <strong>6.5+ Years in QA Automation</strong><br><br>Rahul has worked across:<br>🏥 <strong>Pharmaceutical & Healthcare</strong><br>📱 <strong>Telecom & Billing</strong><br>💳 <strong>Payment Card</strong><br>🌐 <strong>Web Applications</strong><br><br>He's automated <strong>2,000+ test cases</strong> and led QA initiatives across multiple enterprise projects."
-    },
-    skills: {
-      words: ['skill', 'tech', 'tool', 'technology', 'stack', 'know', 'can do', 'expertise', 'proficient', 'language', 'framework'],
-      reply: "🛠️ <strong>Technical Skills</strong><br><br><strong>Automation:</strong> Playwright, Selenium, PyTest, Cypress, Robot Framework, BDD<br><strong>Languages:</strong> Python, SQL, Shell Scripting<br><strong>API:</strong> Postman, REST Assured, Python Requests<br><strong>Database:</strong> Snowflake, PostgreSQL, Oracle<br><strong>Cloud:</strong> AWS (S3, Lambda, RDS, ECS)<br><strong>CI/CD:</strong> Jenkins, GitHub Actions<br><strong>AI Testing:</strong> Copilot, Playwright MCP"
-    },
-    projects: {
-      words: ['project', 'achievement', 'done', 'built', 'created', 'developed', 'automated', 'test case', 'framework', 'delivered'],
-      reply: "📊 <strong>Key Achievements</strong><br><br>✅ Automated <strong>2,000+ test cases</strong><br>✅ Reduced regression by <strong>75%</strong><br>✅ Built frameworks from scratch<br>✅ Led Test Planning & Strategy<br>✅ Implemented AI-assisted testing<br>✅ ETL & Data Warehouse validation<br>✅ CI/CD pipeline integration<br><br>That's impressive, right? 😊"
-    },
-    contact: {
-      words: ['contact', 'email', 'hire', 'reach', 'connect', 'linkedin', 'message', 'call', 'phone', 'resume', 'cv'],
-      reply: "📧 <strong>Get in Touch!</strong><br><br>📍 <strong>Location:</strong> India<br>💼 <strong>Status:</strong> Open to opportunities<br><br>Use the <strong>contact form</strong> on this page to send a direct message. You can also download Rahul's resume from the <strong>Resources</strong> section above! 📄"
-    },
-    qa: {
-      words: ['qa', 'testing', 'quality', 'automation', 'test', 'bug', 'defect', 'regression', 'selenium', 'playwright'],
-      reply: "🔍 <strong>QA & Testing Expertise</strong><br><br>Rahul specializes in:<br>• <strong>UI Automation</strong> (Playwright, Selenium)<br>• <strong>API Testing</strong> (Postman, REST Assured)<br>• <strong>ETL Testing</strong> (Snowflake, PostgreSQL)<br>• <strong>Performance Testing</strong> (JMeter)<br>• <strong>Security Testing</strong> (OWASP)<br>• <strong>AI-Assisted Testing</strong><br><br>He follows <strong>automation-first</strong> quality engineering!"
-    },
-    thanks: {
-      words: ['thank', 'thanks', 'appreciate', 'helpful', 'great', 'awesome', 'nice', 'cool'],
-      reply: "😊 <strong>You're welcome!</strong> I'm happy to help. Is there anything else you'd like to know about Rahul's QA expertise?"
-    }
-  };
+  // Wait for DOM to be fully loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChatbot);
+  } else {
+    initChatbot();
+  }
 
-  // Get response
-  function findReply(input) {
-    const text = input.toLowerCase().trim();
-    for (let category in knowledge) {
-      for (let word of knowledge[category].words) {
-        if (text.includes(word)) return knowledge[category].reply;
+  function initChatbot() {
+    // Knowledge base
+    const knowledge = {
+      greeting: {
+        words: ['hello', 'hi', 'hey', 'hola', 'good morning', 'good evening', 'greetings', 'howdy', 'yo', 'sup'],
+        reply: "👋 <strong>Hello!</strong> I'm Rushi's Assistance. Ask me about Rahul's <strong>QA experience</strong>, <strong>skills</strong>, or <strong>projects</strong>!"
+      },
+      experience: {
+        words: ['experience', 'year', 'work', 'career', 'background', 'history', 'job', 'role', 'position', 'domain', 'industry'],
+        reply: "🎯 <strong>6.5+ Years in QA Automation</strong><br><br>Domains:<br>🏥 Pharmaceutical & Healthcare<br>📱 Telecom & Billing<br>💳 Payment Card<br>🌐 Web Applications<br><br>Automated <strong>2,000+ test cases</strong>!"
+      },
+      skills: {
+        words: ['skill', 'tech', 'tool', 'technology', 'stack', 'know', 'can do', 'expertise', 'proficient', 'language', 'framework'],
+        reply: "🛠️ <strong>Technical Skills</strong><br><br>• Playwright, Selenium, PyTest<br>• Python, SQL, Shell<br>• Postman, REST Assured<br>• Snowflake, PostgreSQL, AWS<br>• Jenkins, GitHub Actions<br>• AI Testing (Copilot, MCP)"
+      },
+      projects: {
+        words: ['project', 'achievement', 'done', 'built', 'created', 'developed', 'automated', 'test case', 'framework'],
+        reply: "📊 <strong>Key Achievements</strong><br><br>✅ 2,000+ test cases automated<br>✅ 75% regression reduction<br>✅ Built frameworks from scratch<br>✅ AI-assisted testing<br>✅ ETL & Data Warehouse validation"
+      },
+      contact: {
+        words: ['contact', 'email', 'hire', 'reach', 'connect', 'linkedin', 'message', 'resume', 'cv'],
+        reply: "📧 <strong>Get in Touch!</strong><br><br>Use the <strong>contact form</strong> on this page to send a message. You can also download the resume from the <strong>Resources</strong> section!"
+      },
+      thanks: {
+        words: ['thank', 'thanks', 'appreciate', 'helpful', 'great', 'awesome', 'nice'],
+        reply: "😊 <strong>You're welcome!</strong> Happy to help! Anything else you'd like to know?"
       }
+    };
+
+    function findReply(input) {
+      const text = input.toLowerCase().trim();
+      for (let category in knowledge) {
+        for (let word of knowledge[category].words) {
+          if (text.includes(word)) return knowledge[category].reply;
+        }
+      }
+      const fallbacks = [
+        "Interesting! 🤔 Try asking about <strong>experience</strong>, <strong>skills</strong>, or <strong>tools</strong>!",
+        "Good question! Ask me about <strong>Playwright</strong>, <strong>Selenium</strong>, or <strong>API testing</strong>!",
+        "I can help! Try: <em>'What is Rahul's experience?'</em> or <em>'What tools does he use?'</em>"
+      ];
+      return fallbacks[Math.floor(Math.random() * fallbacks.length)];
     }
-    const fallbacks = [
-      "Interesting! 🤔 Rahul has deep expertise in QA automation. Try asking about his <strong>experience</strong>, <strong>skills</strong>, or <strong>tools</strong>!",
-      "Great question! For more details, ask about <strong>Playwright</strong>, <strong>Selenium</strong>, <strong>API testing</strong>, or <strong>ETL validation</strong>. I'm here to help!",
-      "I'd love to help! You can ask me things like:<br>🔹 <em>What is Rahul's experience?</em><br>🔹 <em>What tools does he use?</em><br>🔹 <em>How can I contact him?</em>"
-    ];
-    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
-  }
 
-  // DOM elements
-  const launcher = document.getElementById('chatLauncher');
-  const windowEl = document.getElementById('chatWindow');
-  const closer = document.getElementById('chatCloser');
-  const body = document.getElementById('chatBody');
-  const typing = document.getElementById('typingIndicator');
-  const input = document.getElementById('chatInput');
-  const sendBtn = document.getElementById('chatSend');
+    // Get elements
+    const launcher = document.getElementById('chatLauncher');
+    const windowEl = document.getElementById('chatWindow');
+    const closer = document.getElementById('chatCloser');
+    const body = document.getElementById('chatBody');
+    const typing = document.getElementById('typingIndicator');
+    const input = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('chatSend');
 
-  // Toggle window
-  launcher.addEventListener('click', () => {
-    windowEl.classList.toggle('open');
-    launcher.style.display = windowEl.classList.contains('open') ? 'none' : 'flex';
-    if (windowEl.classList.contains('open')) {
+    // Check if elements exist
+    if (!launcher || !windowEl) {
+      console.error('Chatbot elements not found!');
+      return;
+    }
+
+    // Toggle window
+    launcher.onclick = function() {
+      windowEl.classList.add('open');
+      launcher.style.display = 'none';
       input.focus();
-      launcher.querySelector('.notification-dot').style.display = 'none';
+      const dot = launcher.querySelector('.notification-dot');
+      if (dot) dot.style.display = 'none';
+    };
+
+    closer.onclick = function() {
+      windowEl.classList.remove('open');
+      launcher.style.display = 'flex';
+    };
+
+    // Add message
+    function addMsg(text, type) {
+      const div = document.createElement('div');
+      div.className = 'msg ' + type;
+      div.innerHTML = text;
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
     }
-  });
 
-  closer.addEventListener('click', () => {
-    windowEl.classList.remove('open');
-    launcher.style.display = 'flex';
-  });
+    // Send message
+    function sendMessage(text) {
+      if (!text) return;
+      
+      // Add user message
+      addMsg(text, 'user');
+      input.value = '';
+      
+      // Show typing
+      typing.classList.add('show');
+      body.scrollTop = body.scrollHeight;
 
-  // Add message
-  function addMsg(text, type) {
-    const div = document.createElement('div');
-    div.className = `msg ${type}`;
-    div.innerHTML = text;
-    body.insertBefore(div, typing);
-    body.scrollTop = body.scrollHeight;
+      // Hide typing and show reply
+      setTimeout(function() {
+        typing.classList.remove('show');
+        addMsg(findReply(text), 'bot');
+      }, 800 + Math.random() * 1000);
+    }
+
+    // Send button click
+    sendBtn.onclick = function() {
+      sendMessage(input.value.trim());
+    };
+
+    // Enter key
+    input.onkeypress = function(e) {
+      if (e.key === 'Enter' || e.keyCode === 13) {
+        sendMessage(input.value.trim());
+      }
+    };
+
+    // Quick reply buttons
+    const quickBtns = document.querySelectorAll('.quick-btn');
+    quickBtns.forEach(function(btn) {
+      btn.onclick = function() {
+        const msg = this.getAttribute('data-msg') || this.textContent.trim();
+        sendMessage(msg);
+      };
+    });
+
+    // Hide notification after 30 seconds
+    setTimeout(function() {
+      const dot = launcher.querySelector('.notification-dot');
+      if (dot) dot.style.display = 'none';
+    }, 30000);
+
+    console.log('✅ Rushi\'s Assistance chatbot is ready!');
   }
-
-  // Send message
-  function send(text) {
-    if (!text) return;
-    addMsg(text, 'user');
-    input.value = '';
-    typing.classList.add('show');
-    body.scrollTop = body.scrollHeight;
-
-    setTimeout(() => {
-      typing.classList.remove('show');
-      addMsg(findReply(text), 'bot');
-    }, 700 + Math.random() * 1000);
-  }
-
-  // Events
-  sendBtn.addEventListener('click', () => send(input.value.trim()));
-  input.addEventListener('keypress', e => { if (e.key === 'Enter') send(input.value.trim()); });
-
-  // Quick reply buttons
-  document.querySelectorAll('.quick-btn').forEach(btn => {
-    btn.addEventListener('click', () => send(btn.textContent.replace(/[^\w\s]/g, '').trim()));
-  });
-
-  // Hide notification dot after first interaction
-  setTimeout(() => {
-    const dot = launcher.querySelector('.notification-dot');
-    if (dot) dot.style.display = 'none';
-  }, 30000);
 })();
 </script>
 </body>
