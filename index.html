@@ -958,5 +958,543 @@
       });
     })();
   </script>
+  <!-- ============================================ -->
+<!-- RUSHI'S ASSISTANCE - 100% FREE QA CHATBOT   -->
+<!-- No API Key | No Payments | Unlimited Chats  -->
+<!-- ============================================ -->
+
+<style>
+  .rushi-chatbot {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 9999;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  .rushi-chatbot .chat-bubble {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.35);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: softPulse 2.5s infinite;
+    position: relative;
+  }
+  
+  .chat-bubble .notification-dot {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 2px solid white;
+    animation: blink 1.2s infinite;
+  }
+  
+  @keyframes softPulse {
+    0%, 100% { box-shadow: 0 8px 30px rgba(37, 99, 235, 0.35); }
+    50% { box-shadow: 0 8px 45px rgba(37, 99, 235, 0.55); }
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  
+  .rushi-chatbot .chat-bubble:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.5);
+  }
+  
+  .rushi-chatbot .chat-window {
+    display: none;
+    position: fixed;
+    bottom: 95px;
+    left: 24px;
+    width: 370px;
+    height: 520px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    flex-direction: column;
+    animation: slideUp 0.3s ease;
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .rushi-chatbot .chat-window.open {
+    display: flex;
+  }
+  
+  /* Dark mode */
+  [data-theme="dark"] .rushi-chatbot .chat-window {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  /* Header */
+  .rushi-chatbot .chat-header {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .chat-header .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .chat-header .bot-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  
+  .chat-header .bot-title {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+  
+  .chat-header .bot-subtitle {
+    font-size: 11px;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .chat-header .online-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    display: inline-block;
+  }
+  
+  .chat-header .close-chat {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+  }
+  
+  .chat-header .close-chat:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+  
+  /* Messages area */
+  .rushi-chatbot .chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f8fafc;
+  }
+  
+  [data-theme="dark"] .rushi-chatbot .chat-body {
+    background: #0f172a;
+  }
+  
+  .rushi-chatbot .chat-body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .rushi-chatbot .chat-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  
+  .rushi-chatbot .msg {
+    padding: 10px 14px;
+    border-radius: 16px;
+    max-width: 85%;
+    font-size: 13px;
+    line-height: 1.55;
+    word-wrap: break-word;
+    animation: msgIn 0.3s ease;
+  }
+  
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .rushi-chatbot .msg.bot {
+    background: white;
+    border: 1px solid #e2e8f0;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+    color: #1e293b;
+  }
+  
+  [data-theme="dark"] .rushi-chatbot .msg.bot {
+    background: #334155;
+    border-color: #475569;
+    color: #f1f5f9;
+  }
+  
+  .rushi-chatbot .msg.user {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .rushi-chatbot .typing {
+    display: none;
+    align-self: flex-start;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    border-bottom-left-radius: 5px;
+    gap: 5px;
+  }
+  
+  [data-theme="dark"] .rushi-chatbot .typing {
+    background: #334155;
+    border-color: #475569;
+  }
+  
+  .rushi-chatbot .typing.show {
+    display: flex;
+  }
+  
+  .rushi-chatbot .typing span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #94a3b8;
+    animation: bounce 1.3s infinite;
+  }
+  
+  .typing span:nth-child(2) { animation-delay: 0.18s; }
+  .typing span:nth-child(3) { animation-delay: 0.36s; }
+  
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-8px); }
+  }
+  
+  /* Quick reply buttons */
+  .rushi-chatbot .quick-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 12px;
+    background: white;
+    border-top: 1px solid #f1f5f9;
+  }
+  
+  [data-theme="dark"] .rushi-chatbot .quick-btns {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  .rushi-chatbot .quick-btn {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    padding: 7px 13px;
+    border-radius: 18px;
+    font-size: 11.5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  
+  [data-theme="dark"] .rushi-chatbot .quick-btn {
+    background: #1e293b;
+    color: #60a5fa;
+    border-color: #334155;
+  }
+  
+  .rushi-chatbot .quick-btn:hover {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+  }
+  
+  /* Input area */
+  .rushi-chatbot .chat-footer {
+    padding: 12px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 8px;
+    background: white;
+  }
+  
+  [data-theme="dark"] .rushi-chatbot .chat-footer {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  .rushi-chatbot .chat-footer input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 22px;
+    border: 1.5px solid #e2e8f0;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+    transition: 0.2s;
+  }
+  
+  [data-theme="dark"] .rushi-chatbot .chat-footer input {
+    background: #0f172a;
+    color: #f1f5f9;
+    border-color: #475569;
+  }
+  
+  .rushi-chatbot .chat-footer input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .rushi-chatbot .chat-footer .send-btn {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 22px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .rushi-chatbot .chat-footer .send-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .rushi-chatbot .chat-window {
+      width: 92vw;
+      height: 62vh;
+      left: 4vw;
+      bottom: 85px;
+      border-radius: 14px;
+    }
+    .rushi-chatbot .chat-bubble {
+      width: 50px;
+      height: 50px;
+      font-size: 19px;
+      left: 10px;
+    }
+  }
+</style>
+
+<!-- Chatbot HTML -->
+<div class="rushi-chatbot">
+  <button class="chat-bubble" id="chatLauncher" title="Chat with Rushi's Assistance">
+    💬
+    <span class="notification-dot"></span>
+  </button>
+
+  <div class="chat-window" id="chatWindow">
+    <!-- Header -->
+    <div class="chat-header">
+      <div class="header-left">
+        <div class="bot-icon">🤖</div>
+        <div>
+          <div class="bot-title">Rushi's Assistance</div>
+          <div class="bot-subtitle">
+            <span class="online-indicator"></span> Online · Ask me anything!
+          </div>
+        </div>
+      </div>
+      <button class="close-chat" id="chatCloser">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div class="chat-body" id="chatBody">
+      <div class="msg bot">
+        👋 <strong>Hello! I'm Rushi's Assistance.</strong><br><br>
+        I can tell you about:<br>
+        🔹 QA experience & skills<br>
+        🔹 Automation tools & projects<br>
+        🔹 Technical expertise<br>
+        🔹 How to contact Rahul<br><br>
+        <em>What would you like to know?</em>
+      </div>
+    </div>
+
+    <!-- Typing indicator -->
+    <div class="typing" id="typingIndicator">
+      <span></span><span></span><span></span>
+    </div>
+
+    <!-- Quick replies -->
+    <div class="quick-btns" id="quickBtns">
+      <button class="quick-btn">💼 Experience</button>
+      <button class="quick-btn">🛠️ Skills</button>
+      <button class="quick-btn">📊 Projects</button>
+      <button class="quick-btn">📧 Contact</button>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Type your question here..." />
+      <button class="send-btn" id="chatSend">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- Chatbot JavaScript -->
+<script>
+(function() {
+  // Knowledge base
+  const knowledge = {
+    greeting: {
+      words: ['hello', 'hi', 'hey', 'hola', 'good morning', 'good evening', 'greetings', 'howdy', 'yo', 'sup'],
+      reply: "👋 <strong>Hello!</strong> Great to see you here! I'm Rushi's Assistance. Ask me about Rahul's <strong>QA experience</strong>, <strong>skills</strong>, or <strong>projects</strong>. How can I help?"
+    },
+    experience: {
+      words: ['experience', 'year', 'work', 'career', 'background', 'history', 'job', 'role', 'position', 'domain', 'industry'],
+      reply: "🎯 <strong>6.5+ Years in QA Automation</strong><br><br>Rahul has worked across:<br>🏥 <strong>Pharmaceutical & Healthcare</strong><br>📱 <strong>Telecom & Billing</strong><br>💳 <strong>Payment Card</strong><br>🌐 <strong>Web Applications</strong><br><br>He's automated <strong>2,000+ test cases</strong> and led QA initiatives across multiple enterprise projects."
+    },
+    skills: {
+      words: ['skill', 'tech', 'tool', 'technology', 'stack', 'know', 'can do', 'expertise', 'proficient', 'language', 'framework'],
+      reply: "🛠️ <strong>Technical Skills</strong><br><br><strong>Automation:</strong> Playwright, Selenium, PyTest, Cypress, Robot Framework, BDD<br><strong>Languages:</strong> Python, SQL, Shell Scripting<br><strong>API:</strong> Postman, REST Assured, Python Requests<br><strong>Database:</strong> Snowflake, PostgreSQL, Oracle<br><strong>Cloud:</strong> AWS (S3, Lambda, RDS, ECS)<br><strong>CI/CD:</strong> Jenkins, GitHub Actions<br><strong>AI Testing:</strong> Copilot, Playwright MCP"
+    },
+    projects: {
+      words: ['project', 'achievement', 'done', 'built', 'created', 'developed', 'automated', 'test case', 'framework', 'delivered'],
+      reply: "📊 <strong>Key Achievements</strong><br><br>✅ Automated <strong>2,000+ test cases</strong><br>✅ Reduced regression by <strong>75%</strong><br>✅ Built frameworks from scratch<br>✅ Led Test Planning & Strategy<br>✅ Implemented AI-assisted testing<br>✅ ETL & Data Warehouse validation<br>✅ CI/CD pipeline integration<br><br>That's impressive, right? 😊"
+    },
+    contact: {
+      words: ['contact', 'email', 'hire', 'reach', 'connect', 'linkedin', 'message', 'call', 'phone', 'resume', 'cv'],
+      reply: "📧 <strong>Get in Touch!</strong><br><br>📍 <strong>Location:</strong> India<br>💼 <strong>Status:</strong> Open to opportunities<br><br>Use the <strong>contact form</strong> on this page to send a direct message. You can also download Rahul's resume from the <strong>Resources</strong> section above! 📄"
+    },
+    qa: {
+      words: ['qa', 'testing', 'quality', 'automation', 'test', 'bug', 'defect', 'regression', 'selenium', 'playwright'],
+      reply: "🔍 <strong>QA & Testing Expertise</strong><br><br>Rahul specializes in:<br>• <strong>UI Automation</strong> (Playwright, Selenium)<br>• <strong>API Testing</strong> (Postman, REST Assured)<br>• <strong>ETL Testing</strong> (Snowflake, PostgreSQL)<br>• <strong>Performance Testing</strong> (JMeter)<br>• <strong>Security Testing</strong> (OWASP)<br>• <strong>AI-Assisted Testing</strong><br><br>He follows <strong>automation-first</strong> quality engineering!"
+    },
+    thanks: {
+      words: ['thank', 'thanks', 'appreciate', 'helpful', 'great', 'awesome', 'nice', 'cool'],
+      reply: "😊 <strong>You're welcome!</strong> I'm happy to help. Is there anything else you'd like to know about Rahul's QA expertise?"
+    }
+  };
+
+  // Get response
+  function findReply(input) {
+    const text = input.toLowerCase().trim();
+    for (let category in knowledge) {
+      for (let word of knowledge[category].words) {
+        if (text.includes(word)) return knowledge[category].reply;
+      }
+    }
+    const fallbacks = [
+      "Interesting! 🤔 Rahul has deep expertise in QA automation. Try asking about his <strong>experience</strong>, <strong>skills</strong>, or <strong>tools</strong>!",
+      "Great question! For more details, ask about <strong>Playwright</strong>, <strong>Selenium</strong>, <strong>API testing</strong>, or <strong>ETL validation</strong>. I'm here to help!",
+      "I'd love to help! You can ask me things like:<br>🔹 <em>What is Rahul's experience?</em><br>🔹 <em>What tools does he use?</em><br>🔹 <em>How can I contact him?</em>"
+    ];
+    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+  }
+
+  // DOM elements
+  const launcher = document.getElementById('chatLauncher');
+  const windowEl = document.getElementById('chatWindow');
+  const closer = document.getElementById('chatCloser');
+  const body = document.getElementById('chatBody');
+  const typing = document.getElementById('typingIndicator');
+  const input = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('chatSend');
+
+  // Toggle window
+  launcher.addEventListener('click', () => {
+    windowEl.classList.toggle('open');
+    launcher.style.display = windowEl.classList.contains('open') ? 'none' : 'flex';
+    if (windowEl.classList.contains('open')) {
+      input.focus();
+      launcher.querySelector('.notification-dot').style.display = 'none';
+    }
+  });
+
+  closer.addEventListener('click', () => {
+    windowEl.classList.remove('open');
+    launcher.style.display = 'flex';
+  });
+
+  // Add message
+  function addMsg(text, type) {
+    const div = document.createElement('div');
+    div.className = `msg ${type}`;
+    div.innerHTML = text;
+    body.insertBefore(div, typing);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  // Send message
+  function send(text) {
+    if (!text) return;
+    addMsg(text, 'user');
+    input.value = '';
+    typing.classList.add('show');
+    body.scrollTop = body.scrollHeight;
+
+    setTimeout(() => {
+      typing.classList.remove('show');
+      addMsg(findReply(text), 'bot');
+    }, 700 + Math.random() * 1000);
+  }
+
+  // Events
+  sendBtn.addEventListener('click', () => send(input.value.trim()));
+  input.addEventListener('keypress', e => { if (e.key === 'Enter') send(input.value.trim()); });
+
+  // Quick reply buttons
+  document.querySelectorAll('.quick-btn').forEach(btn => {
+    btn.addEventListener('click', () => send(btn.textContent.replace(/[^\w\s]/g, '').trim()));
+  });
+
+  // Hide notification dot after first interaction
+  setTimeout(() => {
+    const dot = launcher.querySelector('.notification-dot');
+    if (dot) dot.style.display = 'none';
+  }, 30000);
+})();
+</script>
 </body>
 </html>
